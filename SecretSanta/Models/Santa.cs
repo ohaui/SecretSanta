@@ -1,6 +1,6 @@
 ﻿namespace SecretSanta.Models;
 
-public class Santa
+public class Santa : User
 {
-    
+    public Receiver Receiver { get; set; }
 }

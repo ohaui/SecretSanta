@@ -3,8 +3,8 @@
 namespace SecretSanta.Controllers;
 
 [ApiController]
-[Route("api/{controller}")]
-public class BaseApiController
+[Route("api/[controller]")]
+public class BaseApiController : ControllerBase
 {
     
 }
