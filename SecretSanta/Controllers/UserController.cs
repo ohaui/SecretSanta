@@ -16,7 +16,7 @@ public class UserController : BaseApiController
     
     [HttpPost]
     [Route("Register")]
-    public async Task<StatusCodeResult> Register(string firstName, string secondName, string wishes)
+    public async Task<IResult> Register(string firstName, string secondName, string wishes)
     {
         var user = new Receiver
         {
@@ -29,21 +29,21 @@ public class UserController : BaseApiController
         
         _context.SaveChangesAsync();
 
-        return Ok();
+        return Results.Ok();
     }
 
     [HttpGet]
     [Route("GetReceiver")]
     public async Task<Receiver> GetReceiver(int id)
     {
-        var user = _context.Receivers.FirstOrDefault(x => x.Id == id);
+        var user = await _context.Receivers.FirstOrDefaultAsync(x => x.Id == id);
 
         return user;
     }
     
     [HttpGet]
     [Route("GetReceivers")]
-    public async Task<Receiver[]> GetUser()
+    public async Task<Receiver[]> GetReceivers()
     {
         var users = _context.Receivers.ToArrayAsync().Result;
         return users;
@@ -53,7 +53,7 @@ public class UserController : BaseApiController
     [Route("GetSanta")]
     public async Task<Santa> GetSanta(int id)
     {
-        var santa = _context.Santas.FirstOrDefault(x => x.Id == id);
+        var santa = await _context.Santas.FirstOrDefaultAsync(x => x.Id == id);
         return santa;
     }
 
